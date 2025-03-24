@@ -320,3 +320,17 @@ curl --location --request DELETE 'http://127.0.0.1:8000/api/task-delete/10/' \
     "assigned_users": [1, 2]
 }'
 
+
+
+## How to code deploy on Github
+:Create a repository on github with public repo name : django_RestApi_project
+* Below commit use to deploy the code on github account:
+> git init
+> git add .
+> git commit -m "Initial commit"
+>git branch -M main
+> git remote set-url origin https://github.com/anilyd/django_RestApi_project.git
+>git push https://<YOUR_TOKEN>@github.com/anilyd/django_RestApi_project.git main
+
+
+
