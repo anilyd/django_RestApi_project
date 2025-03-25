@@ -12,13 +12,16 @@ Step 1: Set Up Virtual Environment
 ##### window system myenv activate
 > .\myenv\Scripts\activate 
 ## or Linux system myenv activate
+
 >source myenv/bin/activate
 
 Step 2: Install Required Packages
 Install Django and DRF
+
 > pip install django djangorestframework
 
 Step 3: Create Django Project and App:
+
 >django-admin startproject taskmanager .
 >python manage.py startapp tasks
 
@@ -30,6 +33,7 @@ INSTALLED_APPS = [
     'tasks',
 ]
 ** database setup:
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -41,6 +45,7 @@ DATABASES = {
     }
 }
 * but i'm using DBsqlite3
+* 
 * restframework:
   
    REST_FRAMEWORK = {
@@ -63,12 +68,14 @@ REST_FRAMEWORK = {
 }
 
 Step 5: Create Models
+
 Edit tasks/models.py:
+
 
 from django.db import models
 from django.contrib.auth.models import User
-
 class Task(models.Model):
+
     TASK_TYPES = (
         ('P', 'Personal'),
         ('W', 'Work'),
@@ -92,9 +99,13 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
+.......
+
 
 Step 6: Create Serializers
-Create tasks/serializers.py:
+
+
+Create tasks/serializers.py.
 
 
 from rest_framework import serializers
@@ -128,6 +139,8 @@ class TaskAssignSerializer(serializers.Serializer):
 Step 7: Create Views
 Edit tasks/views.py:
 
+
+
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -136,6 +149,7 @@ from django.contrib.auth.models import User
 from .models import Task
 from .serializers import (TaskSerializer, TaskCreateSerializer, 
                          TaskAssignSerializer, UserSerializer)
+
 
 @api_view(['GET'])
 def apiOverview(request):
@@ -171,6 +185,7 @@ def taskAssign(request, task_id):
             return Response({'status': 'users assigned'}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['GET'])
 def userTasks(request, user_id):
     try:
@@ -184,11 +199,18 @@ def userTasks(request, user_id):
         return Response(serializer.data)
 
 # Additional CRUD operations to match your example style
+
+
+
+
+
 @api_view(['GET'])
 def taskList(request):
     tasks = Task.objects.all().order_by('-id')
     serializer = TaskSerializer(tasks, many=True)
     return Response(serializer.data)
+
+
 
 @api_view(['GET'])
 def taskDetail(request, pk):
@@ -199,6 +221,8 @@ def taskDetail(request, pk):
     
     serializer = TaskSerializer(task, many=False)
     return Response(serializer.data)
+
+
 
 @api_view(['PUT'])
 def taskUpdate(request, pk):
@@ -212,6 +236,7 @@ def taskUpdate(request, pk):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['DELETE'])
 def taskDelete(request, pk):
@@ -263,6 +288,7 @@ urlpatterns = [
 
 
 Step 9: Run Migrations
+
 >python manage.py makemigrations
 >python manage.py migrate
 
