@@ -156,3 +156,73 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+log_dir = os.path.join(BASE_DIR, 'application_logs')
+os.makedirs(log_dir, exist_ok=True)  
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        'verbose': {
+            'format': '{asctime} | {levelname} | {name} | {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} | {message}',
+            'style': '{',
+        },
+    },
+
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(log_dir, 'server.log'),
+            'formatter': 'verbose',
+        },
+        'error_file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(log_dir, 'errors.log'),
+            'formatter': 'verbose',
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'error_file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['error_file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'custom': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+
+
+print(f"BASE_DIR = {BASE_DIR}")
+print(f"Log file path = {os.path.join(BASE_DIR, 'logs_anil', 'anil_error.log')}")
+

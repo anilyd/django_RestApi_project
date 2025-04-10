@@ -7,6 +7,14 @@ from .models import Task
 from .serializers import (TaskSerializer, TaskCreateSerializer, 
                          TaskAssignSerializer, UserSerializer)
 
+
+
+import logging
+
+logger = logging.getLogger('custom')
+
+
+
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
@@ -18,12 +26,16 @@ def apiOverview(request):
 
 @api_view(['POST'])
 def taskCreate(request):
-    if request.method == 'POST':
-        serializer = TaskCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        if request.method == 'POST':
+            serializer = TaskCreateSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as ex:
+        logger.error("Exception occurred in  API call", exc_info=True)
+        
 
 @api_view(['POST'])
 def taskAssign(request, task_id):
