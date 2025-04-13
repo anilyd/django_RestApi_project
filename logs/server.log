@@ -1,0 +1,16 @@
+2025-04-11 00:17:49,191 | INFO | django.utils.autoreload | Watching for file changes with StatReloader
+2025-04-11 00:32:31,249 | INFO | django.utils.autoreload | D:\Django_api_jwt_logger\django_RestApi_project\taskmanager\settings.py changed, reloading.
+2025-04-11 00:33:11,960 | INFO | django.utils.autoreload | Watching for file changes with StatReloader
+2025-04-11 00:33:19,974 | INFO | django.utils.autoreload | D:\Django_api_jwt_logger\django_RestApi_project\taskmanager\settings.py changed, reloading.
+2025-04-11 00:33:21,154 | INFO | django.utils.autoreload | Watching for file changes with StatReloader
+2025-04-11 02:16:11,986 | INFO | django.utils.autoreload | Watching for file changes with StatReloader
+2025-04-11 02:16:24,727 | WARNING | django.server | "POST /api/task-create/ HTTP/1.1" 401 172
+2025-04-11 02:16:35,843 | INFO | django.server | "POST /api/token/ HTTP/1.1" 200 483
+2025-04-11 02:16:53,913 | ERROR | custom | Exception occurred in  API call
+Traceback (most recent call last):
+  File "D:\Django_api_jwt_logger\django_RestApi_project\tasks\views.py", line 32, in taskCreate
+    if serializer.i_valid():
+       ^^^^^^^^^^^^^^^^^^
+AttributeError: 'TaskCreateSerializer' object has no attribute 'i_valid'
+2025-04-11 02:16:53,989 | ERROR | django.server | "POST /api/task-create/ HTTP/1.1" 500 83282
+2025-04-13 19:25:17,735 | INFO | django.utils.autoreload | Watching for file changes with StatReloader

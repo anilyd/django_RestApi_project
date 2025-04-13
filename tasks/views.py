@@ -29,7 +29,7 @@ def taskCreate(request):
     try:
         if request.method == 'POST':
             serializer = TaskCreateSerializer(data=request.data)
-            if serializer.is_valid():
+            if serializer.i_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

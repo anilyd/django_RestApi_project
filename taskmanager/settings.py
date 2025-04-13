@@ -165,7 +165,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-log_dir = os.path.join(BASE_DIR, 'application_logs')
+log_dir = os.path.join(BASE_DIR, 'logs')
 os.makedirs(log_dir, exist_ok=True)  
 
 LOGGING = {
@@ -223,6 +223,6 @@ LOGGING = {
 
 
 
-print(f"BASE_DIR = {BASE_DIR}")
-print(f"Log file path = {os.path.join(BASE_DIR, 'logs_anil', 'anil_error.log')}")
+# print(f"BASE_DIR = {BASE_DIR}")
+# print(f"Log file path = {os.path.join(BASE_DIR, 'logs_anil', 'anil_error.log')}")
 

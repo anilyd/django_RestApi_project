@@ -1,4 +1,4 @@
-2025-04-10 23:08:01,507 | ERROR | django.request | Internal Server Error: /api/task-create/
+2025-04-11 02:16:53,980 | ERROR | django.request | Internal Server Error: /api/task-create/
 Traceback (most recent call last):
   File "D:\Django_api_jwt_logger\django_RestApi_project\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
     response = get_response(request)
@@ -19,4 +19,4 @@ Traceback (most recent call last):
     assert isinstance(response, HttpResponseBase), (
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 AssertionError: Expected a `Response`, `HttpResponse` or `StreamingHttpResponse` to be returned from the view, but received a `<class 'NoneType'>`
-2025-04-10 23:08:01,515 | ERROR | django.server | "POST /api/task-create/ HTTP/1.1" 500 81750
+2025-04-11 02:16:53,989 | ERROR | django.server | "POST /api/task-create/ HTTP/1.1" 500 83282
